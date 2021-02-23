@@ -1,6 +1,6 @@
-package com.bookcatalogue.BookCat.domain;
+package com.bookcatalogue.BookCat.models;
 
-// Book information
+// Book model
 public class Book {
 
     private String title;
