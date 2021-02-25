@@ -7,9 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/books")
+//@RequestMapping //("/books")
 public class BooksController {
 
     private BookDAO bookDAO;
@@ -19,18 +20,20 @@ public class BooksController {
         this.bookDAO = bookDAO;
     }
 
-    @GetMapping()  // controller's endpoint: "/books"
-    public String getAll(Model model){
+    /*@GetMapping()  // controller's endpoint: "/books"
+    public String getAll(Model model) {
         // get all books from DAO and display them
         model.addAttribute("books", bookDAO.getAll()); //arrayList of Books
         return "books/getAll";
-    }
+    }*/
 
-    @GetMapping("/{id}") //id from the url will be given to the param of the method: "/books/id"
-    public String showBook(@PathVariable("id") int id, Model model){
+    //@GetMapping("/{id}") //id from the url will be given to the param of the method: "/books/id"
+    @GetMapping(path = {"/", "hello"})
+    //public String showBook(@PathVariable("id") int id, Model model){
+    public String showBook(Model model, @RequestParam(value = "id") int id) {
         // return one book by id from DAO and display it
-        model.addAttribute("book", bookDAO.get(id));
-        return "books/showBook";
+        model.addAttribute("id", bookDAO.get(id));
+        return "hello";
     }
 
 }
